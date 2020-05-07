@@ -1,7 +1,7 @@
 {
   "name": "burgernomics",
   "description": "Convert currencies using The Big Mac Index",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Guilherme Caulada (Sighmir)",
   "main": "dist/index.js",
   "license": "MIT",

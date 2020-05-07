@@ -28,13 +28,12 @@ export function getArguments(args?: string[]): Arguments {
     .option("date", {
       alias: "d",
       type: "string",
-      description: "Value will be from next closest date",
+      description: "Get value from next closest date (YYYY-MM-DD)",
     })
     .option("adjusted", {
       alias: "a",
       type: "boolean",
-      description: "Value in base currency",
-      default: false,
+      description: "Adjust to account for GDP per capita",
     })
     .coerce("date", Date.parse).argv;
 }

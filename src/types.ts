@@ -41,5 +41,5 @@ export interface Arguments {
   foreign_currency: string;
   date?: number;
   value: number;
-  adjusted: boolean;
+  adjusted: boolean | undefined;
 }
