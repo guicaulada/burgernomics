@@ -19,6 +19,11 @@ export function getArguments(args?: string[]): Arguments {
       description: "Foreign currency code",
       required: true,
     })
+    .option("exchange_rate", {
+      alias: "e",
+      type: "number",
+      description: "Custom market exchange rate",
+    })
     .option("value", {
       alias: "v",
       type: "number",
@@ -41,13 +46,13 @@ export function getArguments(args?: string[]): Arguments {
 export function main(args?: string[], force = false): void {
   if (require.main === module || force) {
     const argv = getArguments(args);
-    console.log(argv.date);
     if (argv.adjusted) {
       api
         .getAdjustedValues(
           argv!.value,
           argv!.base_currency,
           argv!.foreign_currency,
+          argv!.exchange_rate,
           argv!.date ? new Date(argv!.date) : undefined,
         )
         .then(result => console.log(JSON.stringify(result, null, 4)));
@@ -57,6 +62,7 @@ export function main(args?: string[], force = false): void {
           argv!.value,
           argv!.base_currency,
           argv!.foreign_currency,
+          argv!.exchange_rate,
           argv!.date ? new Date(argv!.date) : undefined,
         )
         .then(result => console.log(JSON.stringify(result, null, 4)));

@@ -79,6 +79,7 @@ export async function getRawValues(
   value: number,
   baseCurrencyCode: string,
   foreignCurrencyCode: string,
+  customExchangeRate?: number,
   startDate?: Date,
 ): Promise<CalculatedValues> {
   const index = await getBigMacIndexFromDate(startDate);
@@ -90,7 +91,8 @@ export async function getRawValues(
 
   const foreignBigMacPrice = foreignCountry.local_price;
   const baseBigMacPrice = baseCountry.local_price;
-  const exchangeRate = foreignCountry.dollar_ex / baseCountry.dollar_ex;
+  const exchangeRate =
+    customExchangeRate || foreignCountry.dollar_ex / baseCountry.dollar_ex;
 
   const result = calculateValues(
     value,
@@ -106,6 +108,7 @@ export async function getAdjustedValues(
   value: number,
   baseCurrencyCode: string,
   foreignCurrencyCode: string,
+  customExchangeRate?: number,
   startDate?: Date,
 ): Promise<CalculatedValues> {
   const index = await getBigMacIndexFromDate(startDate);
@@ -125,7 +128,8 @@ export async function getAdjustedValues(
   const foreignBigMacPrice =
     foreignCountry.adj_price * foreignCountry.dollar_ex;
   const baseBigMacPrice = baseCountry.local_price;
-  const exchangeRate = foreignCountry.dollar_ex / baseCountry.dollar_ex;
+  const exchangeRate =
+    customExchangeRate || foreignCountry.dollar_ex / baseCountry.dollar_ex;
 
   const result = calculateValues(
     value,

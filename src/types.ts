@@ -39,6 +39,7 @@ export type BigMacIndex = BigMacIndexData[];
 export interface Arguments {
   base_currency: string;
   foreign_currency: string;
+  exchange_rate?: number;
   date?: number;
   value: number;
   adjusted: boolean | undefined;
